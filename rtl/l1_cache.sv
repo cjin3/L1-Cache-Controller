@@ -6,9 +6,16 @@ module l1_cache #(
     parameter int LINE_SIZE_BYTES = 32,
     parameter int ASSOCIATIVITY = 4
 )(
-    input logic clk,
-    input logic rst_n
+    cpu_if.worker   cpu_bus,
+    axi4_if.boss    axi_bus 
 );
+
+    //Reset logic
+    always_ff @(posedge cpu_bus.clk or negedge cpu_bus.rst_n) begin
+        if (!cpu_bus.rst_n) begin
+            //reset placholder
+        end
+    end
 
     //Derived parameters
     localparam int OFFSET_BITS = $clog2(LINE_SIZE_BYTES);

@@ -19,14 +19,14 @@ interface cpu_if #(
     logic                  ready;      // 1 = Transaction Completed / Ready for new req
     logic                  hit;        // 1 = Cache Hit, 0 = Cache Miss
 
-    // Modport for the CPU Driver (Master)
-    modport master (
+    // Modport for the CPU Driver (boss)
+    modport boss (
         input  clk, rst_n, rdata, ready, hit,
         output req, write, addr, wdata, wstrb
     );
 
-    // Modport for the L1 Cache Controller (Slave)
-    modport slave (
+    // Modport for the L1 Cache Controller (worker)
+    modport worker (
         input  clk, rst_n, req, write, addr, wdata, wstrb,
         output rdata, ready, hit
     );
