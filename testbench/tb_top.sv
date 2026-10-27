@@ -127,4 +127,23 @@ module tb_top;
         $finish;
     end
 
+    // SystemVerilog assertions 
+    bind l1_cache cache_sva #(
+        .ADDR_WIDTH(32),
+        .DATA_WIDTH(32)
+    ) sva_inst (
+        .clk     (cpu_bus.clk),
+        .rst_n   (cpu_bus.rst_n),
+        .req     (cpu_bus.req),
+        .ready   (cpu_bus.ready),
+        .hit     (cpu_bus.hit),
+        .arvalid (axi_bus.arvalid),
+        .arready (axi_bus.arready),
+        .awvalid (axi_bus.awvalid),
+        .awready (axi_bus.awready),
+        .wvalid  (axi_bus.wvalid),
+        .wready  (axi_bus.wready),
+        .wlast   (axi_bus.wlast)
+    );
+
 endmodule
